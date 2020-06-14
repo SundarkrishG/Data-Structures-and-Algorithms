@@ -1,0 +1,78 @@
+Hi Coder,
+         If you viewing this file, then it's great. I am just a learning Data Structures and Algorithms. So kindly refer this code if any mistake that i have done
+or some other ways to improve my skills and learning. Just tell me i would love to improve myself. 
+E-mail me: sundarkrishnan94@gmail.com 
+My way: Get Knowledge and Share Knowledge!!!...
+
+class Array
+    {
+        // Delete an element using index 
+        static void deleteElement(int[] arr,int length)
+        {
+            Console.WriteLine("Enter the value to be deleted");
+            int val = int.Parse(Console.ReadLine());
+
+            for (int i = val; i < length; i++)
+            {
+                arr[i] = arr[i + 1];
+            }
+
+
+        }
+
+        // Insert Element in between any other position(not at the start)
+        static void insertElement(int[] arr,int length)
+        {
+            Console.WriteLine("Enter the Value");
+            int num = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the Position");
+            int pos = int.Parse(Console.ReadLine());
+            for (int i = length-1; i>= pos; i--)
+            {
+                arr[i] = arr[i - 1];
+
+            }
+            arr[pos] = num;
+
+           
+
+        }
+        //Find Length without using inbuilt function
+        static int findLength(int[] arr)
+        {
+            int count = 0;
+            foreach (var item in arr)
+            {
+                count++;
+            }
+            return count;
+        }
+
+
+        // Add Element to the Array...
+       static void addElement(int[] arr,int length)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                arr[i] = int.Parse(Console.ReadLine());
+            }
+
+        }
+
+
+         static void Main()
+        {
+            int[] arr = new int[5];
+
+            int length = findLength(arr);
+            Console.WriteLine(length);
+
+            addElement(arr,length);
+
+            insertElement(arr,length);
+
+            deleteElement(arr, length);
+
+            Console.ReadKey();
+        }
+    }
