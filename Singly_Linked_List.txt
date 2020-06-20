@@ -1,0 +1,143 @@
+using System;
+
+
+namespace DataStructures
+{
+    //declaration of Node...
+    class Node
+    {
+        public Node head;
+        public Node firs;
+        public int data;
+        public Node link;
+
+        
+        public Node()
+        {
+            data = 0;
+            link = null;
+        }
+        public Node(int Data)
+        {
+            this.data = Data;
+            link = null;
+        }
+
+        //adding node Method...
+        public void addNode(Node node)
+        {
+            if(head==null)
+            {
+                head = node;
+            }
+            else
+            {
+                Node temp;
+                temp = head;
+                while(temp.link!=null)
+                {
+                    temp = temp.link;
+                }
+
+                temp.link = node;
+            }
+        }
+
+
+      //Add node at first
+        public void addAtFirst(Node node)
+        {
+              
+        firs = node;
+            firs.link = head;
+                
+            }
+
+        //print  node...
+        public void printList(Node firs)
+        {
+            while (firs != null)
+            {
+                Console.WriteLine(firs.data);
+                firs = firs.link;
+            }
+        }
+
+        //Find the previous value of delete node..
+        public Node findprevious(int n)
+        {
+            Node current = firs;
+            while((current.link!=null) && (current.link.data!=n))
+            {
+                current = current.link;
+            }
+            return current;
+
+        }
+
+        //deleting  node method ....
+        public void deleteNode(int value)
+        {
+            Node p = findprevious(value);
+           
+            if(p.link!=null)
+            {
+                p.link = p.link.link;
+            }   
+
+            
+        }
+
+        //delete node at the beginning...
+        public void deletenodeAtBegin()
+        {
+            firs = firs.link;
+        }
+        
+        // Reverse a linkedlist....
+        public void reverseList()
+        {
+            Node prev = null, next = null, current = firs;
+
+            while(current!=null)
+            {
+                next = current.link;
+                current.link = prev;
+                prev = current;
+                current = next;
+            }
+            firs = prev;
+        }
+    }
+    
+
+    class Program
+    {   
+         static void Main()
+        {
+            Node list = new Node();
+            list.addNode(new Node(2));
+            list.addNode(new Node(4));
+            list.addNode(new Node(6));
+            list.addNode(new Node(8));
+           
+            Console.WriteLine("Inserting Node at Beginning");
+            list.addAtFirst(new Node(25));
+
+            list.printList(list.firs);
+
+            Console.WriteLine("Deleting Frist Node");
+            list.deletenodeAtBegin();
+            list.printList(list.firs);
+
+            Console.WriteLine("After deleting between nodes:");
+            list.deleteNode(8);
+            list.printList(list.firs);
+
+            Console.WriteLine("Reverse a Linked List");
+            list.reverseList();
+            list.printList(list.firs);
+            Console.ReadKey();
+        }
+    }
+}
