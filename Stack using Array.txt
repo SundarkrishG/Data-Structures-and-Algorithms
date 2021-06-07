@@ -1,0 +1,110 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _100days_practice
+{
+
+    class Stack
+    {
+        static readonly int max = 1000;
+        int top;
+
+        int[] arr = new int[max];
+
+        public Stack(int t)
+        {
+            top = t;
+            t = -1;
+        }
+        public Stack()
+        {
+
+        }
+
+        public bool IsEmpty()
+        {
+            return (top < 0);
+        }
+        public void Push(int data)
+        {
+            if (top >= max)
+            {
+                Console.WriteLine("Stack Overflow");
+            }
+            else
+            {
+                arr[++top] = data;
+            }
+        }
+
+        public int Pop()
+        {
+            int value = 0;
+            if (top < 0)
+            {
+                Console.WriteLine("In Valid");
+            }
+            else
+            {
+                value = arr[top--];
+
+            }
+            return value;
+        }
+
+        public void Peek()
+        {
+            if (top < 0)
+            {
+                Console.WriteLine("Invalid");
+            }
+
+            else
+            {
+                Console.WriteLine("The Value is {0}", arr[top]);
+            }
+
+        }
+
+        public void PrintList()
+        {
+            if(top <0)
+            {
+                Console.WriteLine("invalid");
+            }
+            else
+            {
+                for (int i = top; i >0 ; i--)
+                {
+                    Console.WriteLine(arr[i]);
+                }
+            }
+
+        }
+    }
+    class Program
+    {
+        static void Main(String[] args)
+        {
+            Stack stack = new Stack();
+            int val = 10;
+            for (int i = 0; i < val; i++)
+            {
+                stack.Push(i);
+            }
+
+            stack.Pop();
+            stack.Peek();
+            Console.WriteLine("List is");
+            stack.PrintList();
+            stack.Pop();
+            stack.Peek();
+            Console.ReadKey();
+
+        }
+    }
+}
+
