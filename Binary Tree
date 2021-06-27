@@ -1,0 +1,150 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication4
+{
+    class Node
+    {
+        public int data;
+        public Node left;
+        public Node right;
+
+        public void Display()
+        {
+            Console.Write("[");
+            Console.Write(data);
+            Console.Write("]");
+        }
+
+    }
+
+    class Tree
+    {
+        public Node root;
+
+        public Tree()
+        {
+            root = null;
+        }
+
+        public Node ReturnRoot()
+        {
+            return root;
+        }
+        public void Insert(int id)
+        {
+            Node newNode = new Node();
+            newNode.data = id;
+
+            if(root==null)
+            {
+                root = newNode;
+            }
+            else
+            {
+                Node current = root;
+
+                Node parent;
+
+                while(true)
+                {
+                    parent = current;
+                    if(id<current.data)
+                    {
+                        current = current.left;
+
+                        if(current==null)
+                        {
+                            parent.left = newNode;
+                            return;
+                        }
+                    }
+
+                    else
+                    {
+                        current = current.right;
+                        if(current==null)
+                        {
+                            parent.right = newNode;
+                            return;
+                        }
+                    }
+
+                }
+
+            }
+
+
+        }
+
+        public void Inorder(Node root)
+        {
+            if(root!=null)
+            {
+                Inorder(root.left);
+                Console.Write(root.data + " ");
+                Inorder(root.right);
+            }
+        }
+
+        public void Preorder(Node root)
+        {
+            if(root!=null)
+            {
+                Console.Write(root.data + " ");
+                Preorder(root.left);
+                Preorder(root.right);
+
+            }
+          }
+
+        public void Postorder(Node root)
+        {
+            if(root!=null)
+            {
+                Postorder(root.left);
+                Postorder(root.right);
+                Console.Write(root.data + " ");
+            }
+        }
+
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Tree tree = new Tree();
+
+            tree.Insert(20);
+            tree.Insert(25);
+            tree.Insert(45);
+            tree.Insert(15);
+            tree.Insert(67);
+            tree.Insert(43);
+            tree.Insert(80);
+            tree.Insert(33);
+            tree.Insert(67);
+            tree.Insert(99);
+            tree.Insert(91);
+
+            Console.WriteLine("Inorder Traversal : ");
+            Console.WriteLine("\n");
+            tree.Inorder(tree.ReturnRoot());
+
+            Console.WriteLine("Preorder Traversal : \n");
+            Console.WriteLine("\n");
+            tree.Preorder(tree.ReturnRoot());
+
+            Console.WriteLine("Postorder Traversal : \n");
+            Console.WriteLine("\n");
+            tree.Postorder(tree.ReturnRoot());
+  
+            Console.ReadKey();
+
+        }
+    }
+}
