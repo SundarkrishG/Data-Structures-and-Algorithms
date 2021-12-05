@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Practice_Code
+{
+    class solution
+    {
+        public string StringCompression(string s)
+        {
+            Dictionary<char, int> dict = new Dictionary<char, int>();
+            string res = "";
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                
+                if(!dict.ContainsKey(s[i]))
+                {
+                    res = check(res, dict);
+                    dict.Clear();
+                    dict.Add(s[i], 1);
+
+                }
+
+                else
+                {
+                    dict[s[i]]++;
+                }
+            }
+
+            res = check(res, dict);
+
+            return res;
+
+            
+
+          
+        }
+
+        public string check(string res, Dictionary<char,int> dict)
+        {
+            foreach (var item in dict)
+            {
+                res = res + item.Key.ToString();
+                res = res + item.Value.ToString();
+            }
+
+            return res;
+        }
+
+        
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            string s = "aabcccccaaa";
+
+
+            solution sol = new solution();
+            string res = sol.StringCompression(s);
+
+            Console.WriteLine(res);
+            Console.ReadKey();
+        }
+    }
+}
