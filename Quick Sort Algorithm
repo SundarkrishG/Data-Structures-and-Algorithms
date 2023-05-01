@@ -4,7 +4,7 @@ left element should be less than pivot element and right element should be great
 If the condition fails , then swap the left and right element.
 
 
-Code of Quick sorting :
+Code of Quick sorting in Java:
 import java.util.*;
 
 class Program {
