@@ -1,0 +1,54 @@
+Remember the things:
+Quick sort is a sorting algorithm which we will have a pivot element, comparing the left element and right element. 
+left element should be less than pivot element and right element should be greater than the pivot element. 
+If the condition fails , then swap the left and right element.
+
+
+Code of Quick sorting :
+import java.util.*;
+
+class Program {
+  public static int[] quickSort(int[] array) {
+
+    Arrange(array,0,array.length-1);
+    
+    return  array;
+  }
+
+  public static void Arrange(int[] array, int startIdx , int endIdx){
+    if(startIdx >= endIdx){
+      return;
+    }
+
+    int pivot = startIdx;
+    int left = startIdx+1;
+    int right = endIdx;
+
+    while(left <= right){
+
+      if(array[pivot] < array[left] && array[pivot] > array[right]){
+        swap(left,right,array);
+      }
+
+      if(array[pivot] >= array[left]){
+        left = left+1;
+      }
+
+      if(array[pivot] <= array[right] ){
+        right = right -1;
+      }
+    }
+      
+      swap(pivot, right,array );
+    
+        Arrange(array,startIdx,right-1); //Sort the left side of the element
+        Arrange(array,right +1 , endIdx); //Sort the right side of the element.
+    }
+  
+
+  public static void swap(int i ,int j ,int[] array){
+    int temp =  array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}
